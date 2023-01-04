@@ -287,7 +287,7 @@ By using the module and division by 2 we can successfully extract the LSB from t
 
 **3.** We "concatenate" the bit we extracted in step 1 with our `bits` variable using the `|` operator
 
-		 0000 0000 (bits)
+	     0000 0000 (bits)
 	   | 0000 0001 (octet % 2)
 	   ============
 	     0000 0001	
