@@ -159,7 +159,8 @@ So the pseudo-code for this exercise would be something like this:
 
 	- Paint the current cell with 'F'
 	- Recursively paint the cells to the L, R, U and D by generating the coordinates of the nearby cells
-	- If either I find a character other than the one I started on, or I generate invalid coordinates (negative or higher than the maximum map coordinates) we backtrack, to explore other paths
+	- If I generate invalid coordinates (negative or higher than the maximum map coordinates) I go back
+	- If I find a character other than the one I started on, I go back
 
 Here's the source code:
 
@@ -219,3 +220,18 @@ This line...
 This is necessary since one of the conditions for the backtracking to take effect is to stop whenever it finds a cell that is different from the starting one. By painting the cells you already visit you make sure recursion doesn't re-explore everything you explored before. 
 
 If you were to switch such order, recursion would never reach its base case, ending the program with a stack-smashing error (out of memory).
+
+Also this verification...
+
+```C
+	if (curr.x < 0 || curr.y < 0 || curr.x >= size.x || curr.y >= size.y)
+			return ;
+```
+
+... and this one ...
+```C
+	if (map[curr.y][curr.x] != color)
+			return ;
+```
+
+cannot have their order inverted, or even mixed into a single `if` condition. Notice that if the generated coordinates are out of bounds, you cannot access the `map` variable, as you would be indexing wrong memory addresses. So, only with the right conditions you can parse the cell's color, and not otherwise. 
