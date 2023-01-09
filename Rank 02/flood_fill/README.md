@@ -96,8 +96,10 @@ Let's use the previous example to gather the keypoints.
 
 	- The variable "zone" is a character matrix you must fill a certain zone on. 
 	- You are given the coordinates (x, y) to start filling from (7, 4) in the shape of a struct called t_point. This struct contains merely 2 integers representing x and y.
-	- You also receive another t_point struct containing the size of the matrix. Careful, as this variable does not contain the end coordinates of the filling, only the size of the matrix.
-	- You can't possibly know how many characters to fill by iterating over the matrix. There are too many possibilities over the matrix zones and you cannot anticipate how many cells you need to fill, unless you explore the nearby cells, from the starting point (only (L)eft, (R)ight, (D)own and U(p) as valid directions).
+	- You also receive another t_point struct containing the size of the matrix.
+	Careful, as this variable does not contain the end coordinates of the filling, only the size of the matrix.
+	- You can't possibly know how many characters to fill by iterating over the matrix. 
+	There are too many possibilities over the matrix zones and you cannot anticipate how many cells you need to fill, unless you explore the nearby cells, from the starting point (only (L)eft, (R)ight, (D)own and U(p) as valid directions).
 
 ## **Solution**
 
@@ -119,7 +121,7 @@ Here's an example of a more simple map with valid and invalid directions:
 			<td>
 				<pre align="center">
 {2,2}
-				</pre>
+</pre>
 			</td>
 			<td>
 				<pre align="center">
@@ -127,7 +129,7 @@ Here's an example of a more simple map with valid and invalid directions:
 1100
 1010
 1000
-				</pre >
+</pre >
 			</td>
 			<td>
 				<pre align="center">
@@ -135,7 +137,7 @@ Here's an example of a more simple map with valid and invalid directions:
 1100
 10F0
 1000
-				</pre>
+</pre>
 			</td>
 			<td>
 				<pre align="center">
@@ -143,7 +145,7 @@ FFFF
 FF00
 F0F0
 F000
-				</pre>
+</pre>
 			</td>
 		</tr>
 	</tbody>
@@ -183,14 +185,10 @@ void	flood_fill_recursive(char **map, t_point size, t_point curr, char color)
 
 	//Paint the current cell with 'F'
 	map[curr.y][curr.x] = 'F';
-	//Explore rightwards
-	flood_fill_recursive(map, size, (t_point){curr.x + 1, curr.y}, color);
-	//Explore leftwards
-	flood_fill_recursive(map, size, (t_point){curr.x - 1, curr.y}, color);
-	//Explore downwards
-	flood_fill_recursive(map, size, (t_point){curr.x, curr.y + 1}, color);
-	//Explore upwards 
-	flood_fill_recursive(map, size, (t_point){curr.x, curr.y - 1}, color);
+	flood_fill_recursive(map, size, (t_point){curr.x - 1, curr.y}, color); //L
+	flood_fill_recursive(map, size, (t_point){curr.x + 1, curr.y}, color); //R
+	flood_fill_recursive(map, size, (t_point){curr.x, curr.y - 1}, color); //U
+	flood_fill_recursive(map, size, (t_point){curr.x, curr.y + 1}, color); //D
 }
 
 void	flood_fill(char **tab, t_point size, t_point begin)
@@ -212,10 +210,10 @@ This line...
 ...must always come before this block of code:
 
 ```C
-	flood_fill_recursive(map, size, (t_point){curr.x + 1, curr.y}, color);
-	flood_fill_recursive(map, size, (t_point){curr.x - 1, curr.y}, color);
-	flood_fill_recursive(map, size, (t_point){curr.x, curr.y + 1}, color);
-	flood_fill_recursive(map, size, (t_point){curr.x, curr.y - 1}, color);
+	flood_fill_recursive(map, size, (t_point){curr.x - 1, curr.y}, color); //L
+	flood_fill_recursive(map, size, (t_point){curr.x + 1, curr.y}, color); //R
+	flood_fill_recursive(map, size, (t_point){curr.x, curr.y - 1}, color); //U
+	flood_fill_recursive(map, size, (t_point){curr.x, curr.y + 1}, color); //D
 ```
 
 This is necessary since one of the conditions for the backtracking to take effect is to stop whenever it finds a cell that is different from the starting one. By painting the cells you already visit you make sure recursion doesn't re-explore everything you explored before. 
