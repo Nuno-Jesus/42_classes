@@ -157,11 +157,11 @@ We have another issue: **if we can't predict when to stop, how do we stop?** You
 
 So the pseudo-code for this exercise would be something like this:
 
-	- Paint the current cell with 'F'
-	- Recursively paint the cells to the L, R, U and D by generating the coordinates of the nearby cells
 	- If I generate invalid coordinates (negative or higher than the maximum map coordinates) I go back
 	- If I find a character other than the one I started on, I go back
-
+        - Paint the current cell with 'F'
+	- Recursively paint the cells to the L, R, U and D by generating the coordinates of the nearby cells
+	
 Here's the source code:
 
 ```C
