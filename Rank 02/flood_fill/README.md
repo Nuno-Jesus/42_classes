@@ -103,7 +103,7 @@ Let's use the previous example to gather the keypoints.
 
 ## **Solution**
 
-So where do we start from? The first thing to notice is: you'll "flood" the zone given by the same characters as the starting point. For instance, in example, the coordinates `(x, y) = (7,4)` belong to the character `'0'`. That means that every adjacent `'0'` (only using valid directions) must be turned into an `'F'`.
+So where do we start from? The first thing to notice is: you'll "flood" the zone given by the same characters as the starting point. For instance, in example, the coordinates `(x, y) = (7,4)` belong to the character `'1'`. That means that every adjacent `'1'` (only using valid directions) must be turned into an `'F'`.
 
 Here's an example of a more simple map with valid and invalid directions:
 
