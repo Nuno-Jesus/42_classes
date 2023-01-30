@@ -133,3 +133,17 @@ int main(int argc, char **argv)
 	free(array);
 }*/
 ```
+
+## **Tests**
+
+Make sure this tests are validated, and do not seg. fault.
+
+Start | End | Result
+:----:|:---:| :---:
+1     |  3  | [1, 2, 3]
+3     |  1  | [3, 2, 1]
+-2    |  1  | [-2, -1, 0, 1]
+2     |  -1 | [2, 1, 0, -1]
+0     |  0  | [0]
+-3    |  -4 | [-3, -4]
+-4    |  -3 | [4, -3]
