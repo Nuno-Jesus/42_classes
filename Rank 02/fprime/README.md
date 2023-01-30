@@ -65,7 +65,7 @@ And that works! But how does it work? Noticed I'm not calculating the prime numb
 	42 = 6*7 = 14*3 = 21*2 = 2*3*7
 ```
 
-The number `42` is divisible by `6`, which is not a prime number. But if that's so, why isn't the above algorithm also printing `6`? Because we start in the first prime number (`2`) and `42` is divisible by `2`, then we divide it by `2`, cutting off many numbers that would divide `42`, just like `6`. Here's a more schematic way to see it:
+The number `42` is divisible by `6`, which is not a prime number. But if that's so, why isn't the above algorithm also printing `6`? Because we start with `2` and `42` is divisible by `2`, then we divide it by `2`, cutting off many numbers that would divide `42`, just like `6`. Here's a more schematic way to see it:
 
 |Iteration| Value of n | Possible dividers | Next operation
 |:-------:|:----------:|:-----------------:|:--------------:
